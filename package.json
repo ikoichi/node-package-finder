@@ -1,0 +1,20 @@
+{
+  "name": "package-finder",
+  "version": "1.0.0",
+  "description": "find where a package is used in folders",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Luca Restagno",
+  "license": "MIT",
+  "dependencies": {
+    "file": "^0.2.2",
+    "lodash": "^4.17.5",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "standard": "^11.0.1"
+  }
+}
