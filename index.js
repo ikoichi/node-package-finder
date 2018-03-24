@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-export const finder = require('./finder')
+const finder = require('./finder')
 const yargs = require('yargs')
 
 const argv = yargs
