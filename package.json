@@ -4,7 +4,7 @@
   "description": "find where a package is used in folders",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "find ./tests/ -name '*.spec.js' | xargs mocha -R spec"
   },
   "author": "Luca Restagno",
   "license": "MIT",
