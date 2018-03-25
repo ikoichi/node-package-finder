@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const finder = require('./finder')
+const finder = require('../lib/finder')
 const yargs = require('yargs')
 
 const argv = yargs

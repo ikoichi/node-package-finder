@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const packageFinder = require('../finder')
+const packageFinder = require('../lib/finder')
 
 describe('find packages', () =>{
 

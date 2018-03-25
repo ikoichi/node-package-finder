@@ -1,8 +1,18 @@
 {
   "name": "package-finder",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "find where a package is used in folders",
-  "main": "index.js",
+  "main": "./lib/finder.js",
+  "bin": {
+    "package-finder": "./bin/package-finder"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ikoichi/node-package-finder.git"
+  },
   "scripts": {
     "test": "find ./tests/ -name '*.spec.js' | xargs mocha -R spec"
   },
