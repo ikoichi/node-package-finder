@@ -14,7 +14,7 @@
     "url": "git://github.com/ikoichi/node-package-finder.git"
   },
   "scripts": {
-    "test": "find ./tests/ -name '*.spec.js' | ./node_modules/mocha/bin/mocha -R spec"
+    "test": "./node_modules/mocha/bin/mocha $(find ./tests/ -name '*.spec.js')"
   },
   "author": "Luca Restagno",
   "license": "MIT",
