@@ -1,4 +1,7 @@
-Find where a package is used
+Find where a package is used in multiple folders.
+
+When you have several projects is sometimes difficult to know where you are using a specific package and which version.
+`package-finder` helps you solving this issue
 
 ## Installation
 
