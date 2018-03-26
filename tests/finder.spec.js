@@ -1,10 +1,11 @@
 const { expect } = require('chai')
 const packageFinder = require('../lib/finder')
 
+const packageName = 'lodash'
+const secondPackageName = 'fi-is'
+
 describe('find packages', () =>{
 
-  const packageName = 'lodash'
-  const secondPackageName = 'fi-is'
   it('should find the package', () => {
     let results = packageFinder(['./tests'], [packageName])
     console.log(results)
@@ -50,4 +51,21 @@ describe('find packages', () =>{
     expect(results[1].folders.length).to.equal(1)
     expect(results[1].folders[0]).to.equal('./tests/testProjects/project1')
   })
+
+})
+
+describe('find packages using versions', () =>{
+
+  it('should match the package', () => {
+    let results = packageFinder(['./tests/testProjects/project1'], [`${secondPackageName}:>=1.x`])
+    console.log(results)
+    expect(results.length).to.equal(1)
+  })
+
+  it('should not match the package', () => {
+    let results = packageFinder(['./tests/testProjects/project1'], [`${secondPackageName}:<1.x`])
+    console.log(results)
+    expect(results.length).to.equal(0)
+  })
+
 })

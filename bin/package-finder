@@ -4,8 +4,8 @@ const yargs = require('yargs')
 
 const argv = yargs
     .usage('Usage: $0 -packages [packages] -folders [folders]')
-    .describe('packages', 'comma separated list of package names')
-    .describe('folders', 'comma separated list of folders to look into')
+    .describe('packages', 'Comma separated list of package names (optionally :version)')
+    .describe('folders', 'Comma separated list of folders to look into')
     .alias('f', 'folders')
     .alias('p', 'packages')
     .demandOption(['packages','folders'])
