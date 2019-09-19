@@ -2,7 +2,7 @@
   "name": "package-finder",
   "version": "1.2.0",
   "description": "find where a package is used in folders",
-  "main": "./lib/finder.js",
+  "main": "./dist/finder.js",
   "bin": {
     "package-finder": "./bin/package-finder"
   },
@@ -14,20 +14,27 @@
     "url": "git://github.com/ikoichi/node-package-finder.git"
   },
   "scripts": {
+    "build": "./node_modules/.bin/babel lib/ --out-dir dist",
     "test": "./node_modules/mocha/bin/mocha $(find ./tests/ -name '*.spec.js')"
   },
   "author": "Luca Restagno",
   "license": "MIT",
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "file": "^0.2.2",
     "lodash": "^4.17.15",
     "semver": "^6.3.0",
     "yargs": "^14.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "chai": "^4.2.0",
     "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
     "mocha": "^6.2.0",
+    "prettier": "^1.18.2",
     "standard": "^14.3.1"
   }
 }
