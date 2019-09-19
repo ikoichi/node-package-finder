@@ -1,35 +1,41 @@
 "use strict";
 
-require("core-js/modules/es6.regexp.split");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-require("core-js/modules/web.dom.iterable");
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-const fs = require('fs');
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-const file = require('file');
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-const path = require('path');
+var fs = require('fs');
 
-const _ = require('lodash');
+var file = require('file');
 
-const semver = require('semver');
+var path = require('path');
 
-const deps = ['dependencies', 'devDependencies', 'peerDependencies'];
+var _ = require('lodash');
 
-const init = (dirs, packages) => {
-  let finalResults = {};
-  dirs.forEach(d => {
-    const res = loop(d, packages);
-    finalResults = _.extendWith(finalResults, res, (v, src) => _.concat(src, v));
+var semver = require('semver');
+
+var deps = ['dependencies', 'devDependencies', 'peerDependencies'];
+
+var init = function init(dirs, packages) {
+  var finalResults = {};
+  dirs.forEach(function (d) {
+    var res = loop(d, packages);
+    finalResults = _.extendWith(finalResults, res, function (v, src) {
+      return _.concat(src, v);
+    });
   });
-  Object.keys(finalResults).forEach(k => {
+  Object.keys(finalResults).forEach(function (k) {
     finalResults[k] = _.compact(finalResults[k]);
   }); // format Object
 
-  const formatted = [];
-  Object.keys(finalResults).forEach(packageName => {
-    const obj = {
-      package: packageName,
+  var formatted = [];
+  Object.keys(finalResults).forEach(function (packageName) {
+    var obj = {
+      "package": packageName,
       folders: finalResults[packageName]
     };
     formatted.push(obj);
@@ -37,7 +43,7 @@ const init = (dirs, packages) => {
   return formatted;
 };
 
-const loop = (dir, packages) => {
+var loop = function loop(dir, packages) {
   var results = {};
   file.walkSync(dir, function (dirPath, dirs, files) {
     files.forEach(function (file, index) {
@@ -49,21 +55,26 @@ const loop = (dir, packages) => {
   return results;
 };
 
-const getPackageInfo = packageName => packageName.includes(':') ? packageName.split(':') : [packageName, undefined];
+var getPackageInfo = function getPackageInfo(packageName) {
+  return packageName.includes(':') ? packageName.split(':') : [packageName, undefined];
+};
 
-const processFile = (dirPath, packages, file, results) => {
-  const data = fs.readFileSync("".concat(dirPath).concat(path.sep).concat(file), 'utf8');
-  const packageFile = JSON.parse(data);
-  deps.forEach(dependencyKey => {
+var processFile = function processFile(dirPath, packages, file, results) {
+  var data = fs.readFileSync("".concat(dirPath).concat(path.sep).concat(file), 'utf8');
+  var packageFile = JSON.parse(data);
+  deps.forEach(function (dependencyKey) {
     if (packageFile[dependencyKey]) {
-      Object.keys(packageFile[dependencyKey]).forEach(filePackage => {
-        packages.forEach(_packageName => {
+      Object.keys(packageFile[dependencyKey]).forEach(function (filePackage) {
+        packages.forEach(function (_packageName) {
           // check if package name contains the version, format package-name:version
-          const [packageName, version] = getPackageInfo(_packageName);
+          var _getPackageInfo = getPackageInfo(_packageName),
+              _getPackageInfo2 = _slicedToArray(_getPackageInfo, 2),
+              packageName = _getPackageInfo2[0],
+              version = _getPackageInfo2[1];
 
           if (filePackage.includes(packageName)) {
             if (version) {
-              const packageVersion = semver.coerce(packageFile[dependencyKey][filePackage]);
+              var packageVersion = semver.coerce(packageFile[dependencyKey][filePackage]);
 
               if (semver.satisfies(packageVersion, version)) {
                 addPackage(results, packageName, dirPath);
@@ -78,7 +89,7 @@ const processFile = (dirPath, packages, file, results) => {
   });
 };
 
-const addPackage = (results, packageName, dirPath) => {
+var addPackage = function addPackage(results, packageName, dirPath) {
   if (!results[packageName]) {
     results[packageName] = [];
   }
