@@ -17,7 +17,7 @@ npm install -g package-finder
 ### CLI
 
 ```
-Usage: package-finder -packages [packages] -folders [folders]
+Usage: package-finder --packages [packages] --folders [folders]
 
 Options:
   --help          Show help                                            [boolean]
@@ -28,8 +28,16 @@ Options:
 
 #### Example
 
+Multiple packages search
+
 ```
-package-finder -f ./ -p lodash:>=1.x,underscore:<2.0
+package-finder -f ./ -p "lodash:>=1.x,underscore:<2.0"
+```
+
+Find packages and dependecies with vulnerabilities (below a secure version)
+
+```
+package-finder -f ./ -p "lodash:<4.17.19"
 ```
 
 ### Node.js module
