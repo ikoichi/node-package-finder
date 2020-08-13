@@ -13,6 +13,18 @@
     "type": "git",
     "url": "git://github.com/ikoichi/node-package-finder.git"
   },
+  "keywords": [
+    "search",
+    "find",
+    "node",
+    "package.json",
+    "package",
+    "module",
+    "deps",
+    "dependencies",
+    "recursive",
+    "project"
+  ],
   "scripts": {
     "build": "./node_modules/.bin/babel lib/ --out-dir dist",
     "test": "./node_modules/mocha/bin/mocha $(find ./tests/ -name '*.spec.js')"
